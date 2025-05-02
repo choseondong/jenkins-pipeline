@@ -1,9 +1,12 @@
 pipeline {
-  parameters {
+    environment {
+        MY_APP_PATH = "/usr/local/myapp/bin"
+        }
+    parameters {
     string(name: 'BRANCH', defaultValue: 'main', description: '빌드할 git branch')
-  }
-  agent any
-  stages {
+    }
+    agent any
+    stages {
     stage('Checkout') {
       steps {
         echo "Building branch: ${params.BRANCH}"
@@ -11,6 +14,7 @@ pipeline {
     }
     stage('Build') {
       steps {
+        sh 'echo $MY_APP_PATH'
         sh 'chmod +x ./build.sh'
         sh './build.sh'
       }
