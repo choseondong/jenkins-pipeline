@@ -1,13 +1,9 @@
 pipeline {
-  parameters {
-    string(name: 'BRANCH', defaultValue: 'main', description: '빌드할 git branch')
-  }
   agent any
   stages {
     stage('Checkout') {
       steps {
-        git url: 'https://github.com/seungsuyoo/jenkins-pipeline', branch: params.BRANCH
-        echo "소스코드를 Git 저장소에서 성공적으로 가져왔습니다."
+        git url: 'https://github.com/seungsuyoo/jenkins-pipeline', branch: 'main'
       }
     }
     stage('Setup') {
